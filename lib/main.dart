@@ -24,9 +24,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String _input = "";
   TextEditingController _textController = TextEditingController();
 
-  List<int> _listItems = [];
-  List<Widget> _gridItems = [];
-
   @override
   void initState() {
     super.initState();
@@ -36,45 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onTextFieldChanged() {
     setState(() {
       _input = _textController.text;
-      _generateList();
-      _generateGrid();
     });
-  }
-
-  void _generateList() {
-    _listItems = [];
-    int number = int.tryParse(_input) ?? 0;
-    for (int i = 1; i <= number; i++) {
-      _listItems.add(i);
-    }
-  }
-
-  void _generateGrid() {
-    _gridItems = [];
-    int number = int.tryParse(_input) ?? 0;
-
-    for (int i = 1; i <= number; i++) {
-      Color randomColor = Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
-          .withOpacity(1.0);
-      Widget item = Container(
-        margin: EdgeInsets.symmetric(
-            horizontal: 8.0,
-            vertical:
-                8.0), // Sağ, sol, üst ve alt boşlukları eklemek için kullanılır
-        decoration: BoxDecoration(
-          borderRadius:
-              BorderRadius.circular(20.0), // Karelerin kavisini ayarlar
-          color: randomColor,
-        ),
-        child: Center(
-          child: Text('$i'),
-        ),
-      );
-
-      _gridItems.add(Expanded(
-        child: item,
-      ));
-    }
   }
 
   @override
@@ -103,10 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
           _selectedIndex == 0
               ? Expanded(
                   child: ListView.builder(
-                    itemCount: _listItems.length,
+                    itemCount: int.tryParse(_input) ?? 0,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text('Öğe ${_listItems[index]}'),
+                        title: Text('Öğe ${index + 1}'),
                       );
                     },
                   ),
@@ -116,9 +75,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
-                    itemCount: _gridItems.length,
+                    itemCount: int.tryParse(_input) ?? 0,
                     itemBuilder: (context, index) {
-                      return _gridItems[index];
+                      Color randomColor =
+                          Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
+                              .withOpacity(1.0);
+                      Widget item = Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 8.0,
+                            vertical:
+                                8.0), // Sağ, sol, üst ve alt boşlukları eklemek için kullanılır
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                              20.0), // Karelerin kavisini ayarlar
+                          color: randomColor,
+                        ),
+                        child: Center(
+                          child: Text('${index + 1}'),
+                        ),
+                      );
+
+                      return item;
                     },
                   ),
                 ),
