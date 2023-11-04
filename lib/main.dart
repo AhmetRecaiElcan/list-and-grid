@@ -57,7 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
       Color randomColor = Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0)
           .withOpacity(1.0);
       Widget item = Container(
-        color: randomColor,
+        margin: EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical:
+                8.0), // Sağ, sol, üst ve alt boşlukları eklemek için kullanılır
+        decoration: BoxDecoration(
+          borderRadius:
+              BorderRadius.circular(20.0), // Karelerin kavisini ayarlar
+          color: randomColor,
+        ),
         child: Center(
           child: Text('$i'),
         ),
@@ -77,10 +85,20 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          TextField(
-            controller: _textController,
-            decoration: InputDecoration(labelText: 'Bir sayı girin'),
-            keyboardType: TextInputType.number,
+          Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: 20), // Sağ ve sol boşluklar eklemek için kullanılır
+            child: TextField(
+              controller: _textController,
+              decoration: InputDecoration(
+                labelText: 'Bir sayı girin',
+                border: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(20.0), // Kutunun kavisini ayarlar
+                ),
+              ),
+              keyboardType: TextInputType.number,
+            ),
           ),
           _selectedIndex == 0
               ? Expanded(
