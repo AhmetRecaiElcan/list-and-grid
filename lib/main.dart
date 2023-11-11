@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               .withOpacity(1.0);
                       Widget item = Container(
                         margin: EdgeInsets.symmetric(
-                            horizontal: 8.0,
+                            horizontal: 10.0,
                             vertical:
                                 8.0), // Sağ, sol, üst ve alt boşlukları eklemek için kullanılır
                         decoration: BoxDecoration(
