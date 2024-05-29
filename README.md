@@ -1,3 +1,12 @@
+Trailer :
+
+https://github.com/AhmetRecaiElcan/list-and-grid/assets/97764491/d455604c-7e96-4032-b9b4-09ab4f1a8826
+
+
+
+
+
+
 stateless widget = tek düzenlemelik widget
 stetefull widget = düzenlenemez widget
 
